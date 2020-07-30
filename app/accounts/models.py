@@ -1,10 +1,11 @@
 from django.db import models
 
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin, Group 
 from django.contrib.auth.base_user import BaseUserManager
 
 # Create your models here.
+# customer_group, created = Group.objects.get_or_create(name="customer")
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
