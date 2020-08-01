@@ -34,7 +34,6 @@ class LogoutView(APIView):
 		logout(request)
 		return Response(status=204)
 
-
 class Dashboard(APIView):
 	permission_classes = (IsAuthenticated,)
 
