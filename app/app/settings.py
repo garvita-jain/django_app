@@ -34,10 +34,11 @@ ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'accounts.User'
 
 INSTALLED_APPS = [
+    #Third-party apps
     'rest_framework',
     'rest_framework.authtoken',
-    # 'rest_auth',
 
+    #My apps
     'accounts.apps.AccountsConfig',
 
     'django.contrib.admin',
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+        'rest_framework.authentication.TokenAuthentication',  
     ],
 }
 

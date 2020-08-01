@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from rest_framework import exceptions
+from django.contrib.auth import authenticate
 from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -15,3 +17,26 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'email', 'password', 'first_name', 'last_name')
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        email = data.get('email', '')
+        password = data.get('password', '')
+
+        if email and password:
+            user = authenticate(email = email, password = password)
+            if user:
+                if user.is_active:
+                    data['user'] = user
+                else:
+                    raise exceptions.ValidationError('User Logged Out')
+            else:
+                raise exceptions.ValidationError('Invalid Email id/Password')
+        else:
+            raise exceptions.ValidationError('Email id/Password not provided') 
+        
+        return data
+
