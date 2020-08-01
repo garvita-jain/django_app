@@ -35,7 +35,11 @@ AUTH_USER_MODEL = 'accounts.User'
 
 INSTALLED_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
+    # 'rest_auth',
+
     'accounts.apps.AccountsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
