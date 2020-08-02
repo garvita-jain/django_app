@@ -48,7 +48,7 @@ class RegistrationView(APIView):
 				data['first_name'] = user.first_name
 			else :
 				data = {'message': 'Error in Registration'}
-			return Response(data)
+			return Response(data, status=200)
 
 # class Dashboard(APIView):
 # 	permission_classes = (IsAuthenticated,)
