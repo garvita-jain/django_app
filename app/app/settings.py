@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-# Modified User moder
+# Modified User model
 AUTH_USER_MODEL = 'accounts.User'
 
 INSTALLED_APPS = [
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #My apps
     'accounts.apps.AccountsConfig',
+    'reports.apps.ReportsConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',

@@ -13,11 +13,12 @@ router.register(r'user', views.UserViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
+    # path('reports/', include('reports.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('register/', views.RegistrationView.as_view(), name='register'),
-    # path('hello/', views.Dashboard.as_view()),
+    path('hello/', views.DashboardInfoView.as_view(), name='hello'),
 
     # path('api-token-auth/', obtain_auth_token),
     # url(r'^rest-auth/', include('rest_auth.urls')),

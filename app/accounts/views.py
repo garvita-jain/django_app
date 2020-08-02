@@ -24,7 +24,8 @@ class LoginView(APIView):
 			user = serializer.validated_data['user']
 			login(request, user)
 			token, created = Token.objects.get_or_create(user=user)
-			return Response({'Token': token.key}, status=200)
+			info = {'Token': token.key, 'User_id': user.id, "Name": user.first_name+user.last_name, "Gender": user.gender, "Date of Birth": user.dob, "Phone No": user.phone_no}
+			return Response(info, status=200)
 		else:
 			msg = {'message': "Wrong credentials."}
 			return Response(msg, status=200)
@@ -49,6 +50,18 @@ class RegistrationView(APIView):
 			else :
 				data = {'message': 'Error in Registration'}
 			return Response(data, status=200)
+		
+class DashboardInfoView(APIView):
+	def get(self, request):	
+		try:
+			user = Token.objects.get(key=request.auth.key).user
+		except Token.DoesNotExist:
+			msg = {'message': 'Invalid Token'}
+			return Response(msg, status=200)
+		# user = User.objects.get(id=user_id)
+		return Response(user)
+
+	
 
 # class Dashboard(APIView):
 # 	permission_classes = (IsAuthenticated,)

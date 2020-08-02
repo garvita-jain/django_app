@@ -12,6 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
     phone_no = serializers.CharField(max_length=10)
     password = serializers.CharField(min_length=8)
+    reports = serializers.StringRelatedField(many=True)
 
     def create(self, validated_data):
         user = User.objects.create_user(validated_data['email'], validated_data['password'], first_name = validated_data['first_name'], last_name=validated_data['last_name'], gender=validated_data['gender'], dob=validated_data['dob'], phone_no=validated_data['phone_no']) 
@@ -19,7 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'password', 'first_name', 'last_name', 'gender', 'dob', 'phone_no')
+        fields = ('id', 'email', 'password', 'first_name', 'last_name', 'gender', 'dob', 'phone_no', 'reports')
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField()
