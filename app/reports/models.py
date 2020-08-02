@@ -14,7 +14,7 @@ class Report(models.Model):
         return str(self.id)+" "+str(self.report_type)+" "+str(self.date_added)
 
 class ReportInfo(models.Model):
-    report = models.OneToOneField(Report, on_delete=models.CASCADE)
+    report = models.ForeignKey(Report, related_name='parameter_info', on_delete=models.CASCADE)
     parameter = models.CharField(max_length=100,)
     value = models.IntegerField(blank=True,)
     upper_limit = models.IntegerField(blank=True,)
