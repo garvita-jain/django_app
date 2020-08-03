@@ -6,7 +6,7 @@ class ReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Report
-        fields = ('id', 'user', 'report_type', 'date_added', 'parameter_info')
+        fields = ('id', 'user', 'report_type', 'date_added', 'parameter_info', 'ocr_data')
         # extra_kwargs = {
         #     'user': {'read_only': True}
         # }
